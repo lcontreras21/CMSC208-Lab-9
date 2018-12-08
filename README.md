@@ -23,7 +23,9 @@ Now write a function that takes a text and labels various categories of non-stan
 
 At the top of the file is a sample text that contains various categories of NSWs, including zip codes, phone numbers, years, and PINs (personal identification numbers). The task is to complete the function NSW_markup, which takes this text and returns it with the NSWs identified and labeled with tags, like this:
 
+```xml
 ['NSWs', 'must', 'be', 'classified', 'for', 'phonetic', 'analysis', 'This', 'is', 'especially', 'important', 'in', 'the', 'case', 'of', 'numbers,', 'which', 'differ', 'in', 'their', 'pronunciation', 'depending', 'on', 'their', 'category', 'For', 'example,', 'it', 'is', 'necessary', 'to', 'distinguish', 'a', 'year', 'like', '<year>1849</year>', 'from', 'a', 'PIN', 'like', '<pin>3269</pin>', 'Phone', 'numbers', 'come', 'in', 'variable', 'forms', 'like', '<phone>234-6529</phone>', 'or', '<phone>492-499-1349</phone>', 'or', '<phone>(203)893-5938</phone>', 'Zip', 'codes', 'can', 'also', 'vary', 'between', '<zip>29481</zip>', 'or', '<zip>49381-2395</zip>']
+```
 
 The NSW_markup function is partially filled in: it currently identifies some (but not all) zip codes. But it doesn't label the zip codes it finds; it only prints a message indicating it has found one. Modify and complete this function so that it 1) finds all of the instances of NSW, and 2) labels each one according to its category instead of printing the message.
 
