@@ -17,11 +17,54 @@ Sentence 5 :  Wow!
 
 # calling the demo function to see what it does to the tokenizertest.txt file
 >>> naive_demo()
+Sentence 1 : Shalane Flanagan's first-place finish in the NYC Marathon's women's division was an incredible achievement on several levels:
+Sentence 2 :  Not only was it the Marblehead-raised long-distance runner's first major marathon victory in what she suggested might be the final race of her career, but it was also the first time an American woman had won the race since 1977.
+Sentence 3 :  After the race, Flanagan - who withdrew from the Boston Marathon earlier this year due to injury - choked up talking about her Nov.
+Sentence 4 :  5 victory.
+Sentence 5 :
+<BLANKLINE>
+About nine months ago, I was heartbroken over not getting the opportunity to race the Boston Marathon, she said.
+Sentence 6 :  I just kept telling myself that there's going to be delayed gratification and a moment down the road that would make up for it.
+Sentence 7 :
+<BLANKLINE>
+Iâ€™ve dreamed of a moment like this since I was a little girl, said the 36-year-old.
+Sentence 8 :  It took me seven years to do this;
+Sentence 9 :  a lot of work just went into this one moment.
+Sentence 10 :
+<BLANKLINE>
+Flanagan also said that as she finished the 26.
+Sentence 11 : 2 mile race she thought about fellow American runner M.
+Sentence 12 :  Keflezighi, who finished his final career race Sunday, and how she wanted to make him proud.
+Sentence 13 :
+<BLANKLINE>
+And I think I did!
+Sentence 14 :  Flanagan said.
+Sentence 15 :  Her finish time was 2:
+Sentence 16 : 26:
+Sentence 17 : 53.
+Sentence 18 :  The prize for 1st place was $100,000.
+Sentence 19 : 00.
 
 ## The errors happen with punctuation used in different locations than sentence boundaries. Places such as dates, decimals, money, time, abbreviation in name cause errors. 
 
 # testing the better_tokenizer function
 >>> print_sentences(better_tokenizer(open("tokenizertest.txt", "r").read()))
+Sentence 1 :  Shalane Flanagan's first-place finish in the NYC Marathon's women's division was an incredible achievement on several levels: Not only was it the Marblehead-raised long-distance runner's first major marathon victory in what she suggested might be the final race of her career, but it was also the first time an American woman had won the race since 1977.
+Sentence 2 :  After the race, Flanagan - who withdrew from the Boston Marathon earlier this year due to injury - choked up talking about her Nov. 5 victory.
+Sentence 3 :  About nine months ago, I was heartbroken over not getting the opportunity to race the Boston Marathon, she said.
+Sentence 4 :  I just kept telling myself that there's going to be delayed gratification and a moment down the road that would make up for it.
+Sentence 5 :  Iâ€™ve dreamed of a moment like this since I was a little girl, said the 36-year-old.
+Sentence 6 :  It took me seven years to do this; a lot of work just went into this one moment.
+Sentence 7 :  Flanagan also said that as she finished the 26.2 mile race she thought about fellow American runner M. Keflezighi, who finished his final career race Sunday, and how she wanted to make him proud.
+Sentence 8 :  And I think I did!
+Sentence 9 :  Flanagan said.
+Sentence 10 :  Her finish time was 2:26:53.
+Sentence 11 :  The prize for 1st place was $100,000.00.
+
+###
+The number of sentences goes down and there are no more glaring errors. In sentence punctuation, like ";" and ":" do not count as the sentence is still going, despite them being two completely separate but related thoughts. Otherwise, the number of sentences would increase by two. 
+###
+
 
 '''
 # tokenizer takes a string and returns a list of the sentences contained in that string.
@@ -39,7 +82,7 @@ def tokenizer(text):
 	return sentences
 	
 def better_tokenizer(text):
-	end_punctuation = ['.','!','?',':',';']
+	end_punctuation = ['.','!','?']
 	sentence = ''
 	text_list = text.split()
 	sentences = []
@@ -50,10 +93,10 @@ def better_tokenizer(text):
 			if word.lower()[:-1] in ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]:
 				sentence += " " + word
 			# check if decimal in a number
-			elif word[0] in "1234567890" or word[0] in "124567890":
+			elif word[-1] not in "".join(end_punctuation):
 				sentence += " " + word
-			# check if abbreviation
-			elif word[:2] == "mr" or word[:2] == "ms" or word[0].isupper() and len(word) == 2:
+			# check if word is an abbreviation of someone's name
+			elif len(word) == 2 and word[0].isupper():
 				sentence += " " + word
 			else:
 				sentence += " " + word
