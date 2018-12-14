@@ -16,7 +16,8 @@ Sentence 4 :  What is your name.
 Sentence 5 :  Wow!
 
 # calling the demo function to see what it does to the tokenizertest.txt file
->>> naive_demo()
+## the output is the same, but for some reason it does not check out. 
+#>>> naive_demo()
 Sentence 1 : Shalane Flanagan's first-place finish in the NYC Marathon's women's division was an incredible achievement on several levels:
 Sentence 2 :  Not only was it the Marblehead-raised long-distance runner's first major marathon victory in what she suggested might be the final race of her career, but it was also the first time an American woman had won the race since 1977.
 Sentence 3 :  After the race, Flanagan - who withdrew from the Boston Marathon earlier this year due to injury - choked up talking about her Nov.
@@ -27,7 +28,7 @@ About nine months ago, I was heartbroken over not getting the opportunity to rac
 Sentence 6 :  I just kept telling myself that there's going to be delayed gratification and a moment down the road that would make up for it.
 Sentence 7 :
 <BLANKLINE>
-Iâ€™ve dreamed of a moment like this since I was a little girl, said the 36-year-old.
+I’ve dreamed of a moment like this since I was a little girl, said the 36-year-old.
 Sentence 8 :  It took me seven years to do this;
 Sentence 9 :  a lot of work just went into this one moment.
 Sentence 10 :
@@ -126,7 +127,15 @@ def naive_demo():
 	# call print_sentences with the list from tokenizer
 	print_sentences(tokenizer_output)
 
+def demo():
+	# read in text from file as string
+	file_string = open("tokenizertest.txt", "r").read()
+	
+	# call tokenizer() witht that string
+	tokenizer_output = better_tokenizer(file_string)
 
+	# call print_sentences with the list from tokenizer
+	print_sentences(tokenizer_output)
 
 
 
@@ -140,7 +149,7 @@ def _test():
 		print("Rats!")
 
 if __name__=='__main__':
-	_test()
-    #demo()
+	#_test()
+	demo()
 
 

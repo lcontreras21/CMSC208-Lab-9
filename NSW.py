@@ -1,4 +1,3 @@
-
 # CMSC/LING 208 Lab 9 Part 3
 # Name: Luis Contreras-Orendain
 
@@ -68,7 +67,6 @@ def NSW_markup(t):
 		else:
 			markedup.append(t[i])
 		i+=1
-      
 	return markedup
 
 def demo():
